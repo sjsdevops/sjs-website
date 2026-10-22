@@ -67,7 +67,7 @@ const mainFacilities: Facility[] = [
     id: "science-labs",
     title: "Science Laboratories",
     subtitleHeading: "Our Laboratories",
-    image: "/images/facilities/science lab.jpg",
+    image: "/images/facilities/science-lab.jpg",
     imageAlt: "Physics, Chemistry and Biology laboratories at Sree Jayam School",
     icon: FaFlask,
     category: "Practical Sciences",
@@ -83,7 +83,7 @@ const mainFacilities: Facility[] = [
     id: "computer-robotics-lab",
     title: "Computer & Robotics Lab",
     subtitleHeading: "Computer & Robotics Lab",
-    image: "/images/facilities/computer lab.jpg",
+    image: "/images/facilities/computer-lab.jpg",
     imageAlt: "Modern computer and robotics lab workstations at Sree Jayam School",
     icon: FaComputer,
     category: "Technology & Computing",
@@ -101,7 +101,7 @@ const mainFacilities: Facility[] = [
     id: "sports-facilities",
     title: "Sports Facilities",
     subtitleHeading: "Sports Facilities",
-    image: "/images/facilities/sports facilities.jpg",
+    image: "/images/facilities/sports- facilities.jpg",
     imageAlt: "Sports grounds and athletic training at Sree Jayam School",
     icon: FaTrophy,
     category: "Physical Education",
@@ -117,7 +117,7 @@ const mainFacilities: Facility[] = [
     id: "smart-classrooms",
     title: "Smart Classrooms",
     subtitleHeading: "Smart Classrooms",
-    image: "/images/facilities/smart classroom.jpg",
+    image: "/images/facilities/smart-classroom.jpg",
     imageAlt: "Smart classroom with interactive digital presentation board",
     icon: FaChalkboardUser,
     category: "Digital Learning",
@@ -136,7 +136,7 @@ const mainFacilities: Facility[] = [
     id: "montessori-room",
     title: "Montessori Room",
     subtitleHeading: "Montessori Room",
-    image: "/images/facilities/montessori room.jpg",
+    image: "/images/facilities/montessori-room.jpg",
     imageAlt: "Montessori room with hands-on learning materials for young learners",
     icon: FaPuzzlePiece,
     category: "Early Childhood",
@@ -157,7 +157,7 @@ const mainFacilities: Facility[] = [
     id: "kids-play-area",
     title: "Kids Play Area",
     subtitleHeading: "Kids Play Area",
-    image: "/images/facilities/kids play area.jpg",
+    image: "/images/facilities/kidsplay-area.jpg",
     imageAlt: "Safe and enjoyable kids play area at Sree Jayam School",
     icon: FaChildReaching,
     category: "Recreation & Play",
@@ -176,7 +176,7 @@ const mainFacilities: Facility[] = [
     id: "indoor-hall",
     title: "Indoor Multipurpose Hall",
     subtitleHeading: "Indoor Multipurpose Hall",
-    image: "/images/facilities/indoor hall.jpg",
+    image: "/images/facilities/indoor-hall.jpg",
     imageAlt: "Spacious multipurpose indoor hall for school programmes",
     icon: FaPeopleRoof,
     category: "Assembly & Culture",
@@ -195,7 +195,7 @@ const mainFacilities: Facility[] = [
     id: "basketball-court",
     title: "Outdoor Basketball Court",
     subtitleHeading: "Outdoor Basketball Court",
-    image: "/images/facilities/basket ball.jpg",
+    image: "/images/facilities/basket-ball.jpg",
     imageAlt: "Outdoor basketball court at Sree Jayam School",
     icon: FaBasketball,
     category: "Court Sports",
@@ -218,7 +218,7 @@ const finalRowFacilities: Facility[] = [
     id: "music-room",
     title: "Music Room",
     subtitleHeading: "Music Room",
-    image: "/images/facilities/music room.jpg",
+    image: "/images/facilities/music-room.jpg",
     imageAlt: "Acoustic music room with instruments at Sree Jayam School",
     icon: FaMusic,
     category: "Performing Arts",
@@ -640,7 +640,7 @@ export default function FacilitiesPage() {
               <div className="lg:col-span-5">
                 <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md border border-white">
                   <Image
-                    src="/images/facilities/science lab.jpg"
+                    src="/images/facilities/science-lab.jpg"
                     alt="Students conducting experiments in Sree Jayam School science laboratory"
                     fill
                     unoptimized

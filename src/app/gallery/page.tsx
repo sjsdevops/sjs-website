@@ -65,12 +65,12 @@ const celebrationAlbums: Album[] = [
     title: "Investiture Ceremony",
     category: "Ceremonies",
     categoryBadge: "Ceremonies",
-    coverImage: "/images/facilities/indoor hall.jpg",
+    coverImage: "/images/facilities/indoor-hall.jpg",
     description:
       "Honouring student leaders and conferring badges of responsibility and service to the newly elected Student Council members.",
     images: [
       {
-        src: "/images/facilities/indoor hall.jpg",
+        src: "/images/facilities/indoor-hall.jpg",
         caption: "Student Council Leaders receiving ceremonial sashes at the Investiture Ceremony",
       },
       {
@@ -90,16 +90,16 @@ const celebrationAlbums: Album[] = [
     title: "Sports Day",
     category: "Sports",
     categoryBadge: "Sports",
-    coverImage: "/images/facilities/sports facilities.jpg",
+    coverImage: "/images/facilities/sports- facilities.jpg",
     description:
       "A thrilling annual celebration of athleticism, teamwork, track events, and vibrant inter-house sportsmanship.",
     images: [
       {
-        src: "/images/facilities/sports facilities.jpg",
+        src: "/images/facilities/sports- facilities.jpg",
         caption: "Athletes taking position on the track during the annual inter-house sprint events",
       },
       {
-        src: "/images/facilities/basket ball.jpg",
+        src: "/images/facilities/basket-ball.jpg",
         caption: "High-energy basketball championship on the campus outdoor court",
       },
       {
@@ -140,12 +140,12 @@ const celebrationAlbums: Album[] = [
     title: "Colour Day",
     category: "Special Days",
     categoryBadge: "Special Days",
-    coverImage: "/images/facilities/kids play area.jpg",
+    coverImage: "/images/facilities/kidsplay-area.jpg",
     description:
       "A vibrant sensory celebration where kindergarteners and primary learners immerse themselves in colourful learning activities.",
     images: [
       {
-        src: "/images/facilities/kids play area.jpg",
+        src: "/images/facilities/kidsplay-area.jpg",
         caption: "Little learners joyfully celebrating Colour Day in vibrant themed attire",
       },
       {
@@ -153,7 +153,7 @@ const celebrationAlbums: Album[] = [
         caption: "Sensory learning and cooperative color games in the kindergarten play area",
       },
       {
-        src: "/images/facilities/montessori room.jpg",
+        src: "/images/facilities/montessori-room.jpg",
         caption: "Hands-on colour exploration with tactile Montessori apparatus",
       },
     ],
@@ -178,7 +178,7 @@ const celebrationAlbums: Album[] = [
         caption: "Innovation and science day exhibits crafted by young curious minds",
       },
       {
-        src: "/images/facilities/smart classroom.jpg",
+        src: "/images/facilities/smart-classroom.jpg",
         caption: "Interactive audio-visual presentations exploring world heritage days",
       },
     ],
@@ -199,7 +199,7 @@ const celebrationAlbums: Album[] = [
         caption: "Students felicitating respected educators with tokens of gratitude and flowers",
       },
       {
-        src: "/images/facilities/indoor hall.jpg",
+        src: "/images/facilities/indoor-hall.jpg",
         caption: "Lively student-choreographed skit and cultural tribute for Teachers Day",
       },
     ],
@@ -220,11 +220,11 @@ const celebrationAlbums: Album[] = [
         caption: "Smiles and joyful games as students celebrate Childrens Day on campus",
       },
       {
-        src: "/images/facilities/kids play area.jpg",
+        src: "/images/facilities/kidsplay-area.jpg",
         caption: "Festive recreational rides and playful team games",
       },
       {
-        src: "/images/facilities/montessori room.jpg",
+        src: "/images/facilities/montessori-room.jpg",
         caption: "Early learners enjoying special treats and surprise gifts from teachers",
       },
     ],
@@ -236,16 +236,16 @@ const celebrationAlbums: Album[] = [
     title: "Odyssey",
     category: "Cultural Events",
     categoryBadge: "Cultural Events",
-    coverImage: "/images/facilities/music room.jpg",
+    coverImage: "/images/facilities/music-room.jpg",
     description:
       "Our premier inter-school cultural extravaganza uniting schools across the region in debate, music, art, and dance.",
     images: [
       {
-        src: "/images/facilities/music room.jpg",
+        src: "/images/facilities/music-room.jpg",
         caption: "Instrumental and vocal music duel at the Odyssey Inter-School Cultural Fest",
       },
       {
-        src: "/images/facilities/indoor hall.jpg",
+        src: "/images/facilities/indoor-hall.jpg",
         caption: "Auditorium packed with cheering audiences during Odyssey stage competitions",
       },
     ],
@@ -266,7 +266,7 @@ const celebrationAlbums: Album[] = [
         caption: "Students staging classical and contemporary musical plays at the Annual Day Gala",
       },
       {
-        src: "/images/facilities/indoor hall.jpg",
+        src: "/images/facilities/indoor-hall.jpg",
         caption: "Honouring academic rank holders and proud award recipients",
       },
       {
@@ -291,7 +291,7 @@ const celebrationAlbums: Album[] = [
         caption: "School choir performing classical choral harmonies at the Annual Concert",
       },
       {
-        src: "/images/facilities/music room.jpg",
+        src: "/images/facilities/music-room.jpg",
         caption: "Student keyboardists and percussionists orchestrating live melodies",
       },
     ],
@@ -312,7 +312,7 @@ const celebrationAlbums: Album[] = [
         caption: "Students standing together with respect during the morning assembly and prayer",
       },
       {
-        src: "/images/facilities/indoor hall.jpg",
+        src: "/images/facilities/indoor-hall.jpg",
         caption: "Student sharing the thought for the day and moral reflection from the podium",
       },
       {

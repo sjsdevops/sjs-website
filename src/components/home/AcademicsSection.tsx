@@ -46,7 +46,7 @@ const row1Stages: StageItem[] = [
     grade: "Grades VI – VIII",
     description:
       "The curriculum becomes more comprehensive, encouraging deeper understanding of subjects along with co-curricular activities and independent thinking.",
-    image: "/images/academics/middle-school.jpg",
+    image: "/images/academics/middle-school.JPG",
     badgeBg: "bg-[#FFC83D]",
     badgeText: "text-[#102D46]",
   },
