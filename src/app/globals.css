@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --brand-blue: #075a9c;
+  --deep-navy: #102d46;
+  --sunshine: #ffc83d;
+  --teal: #39b9a6;
+  --sky: #eaf5ff;
+  --cream: #fff8e8;
+  --foreground: #102d46;
+  --background: #ffffff;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--sunshine);
+    color: var(--deep-navy);
+  }
+}
+
+.font-serif {
+  font-family: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-sans {
+  font-family: var(--font-poppins), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.container-width {
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .container-width {
+    width: calc(100% - 32px);
+  }
+}
+
+.display-font {
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+/* Continuous Scrolling Marquee Announcement Ticker */
+@keyframes continuous-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-continuous {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: continuous-marquee 42s linear infinite;
+}
+
+.announcement-bar-hover:hover .animate-marquee-continuous,
+.announcement-bar-hover:focus-within .animate-marquee-continuous {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-continuous {
+    animation-play-state: paused !important;
+  }
+}
+
+/* ========================================================================= */
+/* Admission Call Now Button - Toggle Hover Effect                            */
+/* ========================================================================= */
+.admission-toggle-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 58px;
+  width: 168px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: #102D46;
+  border: 1.5px solid rgba(255, 200, 61, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(7, 90, 156, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.admission-toggle-btn:hover {
+  border-color: #FFC83D;
+  box-shadow: 0 6px 22px rgba(255, 200, 61, 0.32), 0 0 16px rgba(7, 90, 156, 0.25);
+}
+
+.admission-toggle-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px #FFC83D, 0 0 0 5px #102D46;
+}
+
+.admission-toggle-btn:active {
+  transform: scale(0.97);
+}
+
+/* Gold circular phone icon - on the right in normal state */
+.admission-toggle-icon {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: flex;
+  height: 44px;
+  width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #FFC83D;
+  color: #102D46;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Text: Call Now in gold - on the left in normal state */
+.admission-toggle-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 22px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #FFC83D;
+  white-space: nowrap;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Hover & Focus state: icon glides smoothly from right to left, text glides from left to right */
+.admission-toggle-btn:hover .admission-toggle-icon,
+.admission-toggle-btn:focus-visible .admission-toggle-icon {
+  transform: translateX(-127px);
+}
+
+.admission-toggle-btn:hover .admission-toggle-text,
+.admission-toggle-btn:focus-visible .admission-toggle-text {
+  transform: translateX(51px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admission-toggle-icon,
+  .admission-toggle-text {
+    transition: none !important;
+  }
+}
