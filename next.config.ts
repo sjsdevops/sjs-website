@@ -1,3 +1,4 @@
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -6,3 +7,5 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 };
+
+export default nextConfig;
