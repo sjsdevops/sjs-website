@@ -3,12 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Menu,
   X,
   ChevronDown,
   ArrowRight,
-  Send,
   Phone,
   Mail,
   MapPin,
@@ -54,8 +54,22 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileAboutExpanded, setMobileAboutExpanded] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  // Track scroll position to adjust background and compact styling
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Smooth hover handlers with debounce to prevent accidental closure
   const handleMouseEnter = () => {
@@ -120,27 +134,36 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const handleAdmissionClick = () => {
-    if (onOpenEnquiry) {
-      onOpenEnquiry();
-    } else {
-      const el = document.getElementById("admissions");
-      el?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <>
-      {/* Completely Transparent Header Overlay over Hero Video (Elevated to z-40 so dropdown stays above all page content) */}
-      <header className="absolute top-0 left-0 right-0 z-40 w-full bg-transparent">
-        <div className="container-width flex items-center justify-between pt-5 sm:pt-6 lg:pt-8 pb-3 sm:pb-4">
+      {/* Sticky/Fixed Header across all pages and during scrolling */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ease-in-out bg-[#102D46] shadow-[0_4px_16px_rgba(0,0,0,0.15)] border-b border-white/10 ${
+          isScrolled
+            ? "sm:bg-[#102D46]/95 sm:backdrop-blur-md sm:shadow-[0_4px_25px_rgba(0,0,0,0.18)] sm:border-b sm:border-white/10"
+            : isHomePage
+            ? "sm:bg-transparent sm:shadow-none sm:border-transparent"
+            : "sm:bg-[#102D46]/85 sm:backdrop-blur-md sm:shadow-[0_4px_16px_rgba(0,0,0,0.12)] sm:border-b sm:border-white/10"
+        }`}
+      >
+        <div
+          className={`container-width flex items-center justify-between transition-all duration-300 ${
+            isScrolled
+              ? "py-2.5 sm:py-3 lg:py-3.5"
+              : "py-2.5 sm:pt-5 lg:pt-7 sm:pb-3.5"
+          }`}
+        >
 
           {/* ========================================================================= */}
           {/* 1. LEFT: Solid White Organic Blob Logo Container                          */}
           {/* ========================================================================= */}
           <Link
             href="/"
-            className="relative inline-flex items-center justify-center shrink-0 px-4 sm:px-7 md:px-8 py-2 sm:py-3 transition-transform hover:scale-[1.02] filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.12)] cursor-pointer group"
+            className={`relative inline-flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-[1.02] filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.12)] cursor-pointer group ${
+              isScrolled
+                ? "px-3.5 sm:px-6 md:px-7 py-1.5 sm:py-2.5"
+                : "px-4 sm:px-7 md:px-8 py-2 sm:py-3"
+            }`}
             title="Sree Jayam School - Home"
           >
             {/* Smooth asymmetrical organic blob SVG background */}
@@ -164,7 +187,11 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
               height={95}
               unoptimized
               priority
-              className="relative z-10 h-6.5 sm:h-8 md:h-10 lg:h-11 xl:h-11.5 w-auto object-contain transition-opacity group-hover:opacity-95"
+              className={`relative z-10 w-auto object-contain transition-all duration-300 group-hover:opacity-95 ${
+                isScrolled
+                  ? "h-6 sm:h-7 md:h-8.5 lg:h-9.5 xl:h-10"
+                  : "h-6.5 sm:h-8 md:h-10 lg:h-11 xl:h-11.5"
+              }`}
             />
           </Link>
 
@@ -178,6 +205,17 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
             {navItems.map((item) => {
               const isAbout = item.name === "About Us";
               const isHome = item.name === "Home";
+              const isAboutActive =
+                isAbout &&
+                (pathname === "/about-us" ||
+                  pathname === "/leadership-messages" ||
+                  pathname === "/mission-and-vision-policy" ||
+                  pathname === "/why-choose-us" ||
+                  pathname === "/mandatory-disclosure");
+              const isItemActive =
+                isHome
+                  ? pathname === "/"
+                  : pathname === item.href;
 
               if (isAbout) {
                 return (
@@ -195,27 +233,35 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
                       aria-haspopup="true"
                       aria-expanded={dropdownOpen}
                       aria-controls="about-dropdown-menu"
-                      className={`inline-flex items-center gap-1.5 text-[14.5px] xl:text-[15px] font-bold tracking-tight !text-white hover:!text-[#FFC83D] transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D] rounded-lg px-2 py-1 select-none ${dropdownOpen ? "!text-[#FFC83D]" : ""
-                        }`}
+                      className={`inline-flex items-center gap-1.5 text-[14.5px] xl:text-[15px] font-bold tracking-tight !text-white hover:!text-[#FFC83D] transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D] rounded-lg px-2 py-1 select-none ${
+                        dropdownOpen || isAboutActive ? "!text-[#FFC83D]" : ""
+                      }`}
                     >
                       <span className="!text-white group-hover:!text-[#FFC83D] transition-colors">
                         {item.name}
                       </span>
                       <ChevronDown
-                        className={`h-3.5 w-3.5 !text-white stroke-[2.4] transition-transform duration-200 group-hover:rotate-180 group-hover:!text-[#FFC83D] ${dropdownOpen ? "rotate-180 !text-[#FFC83D]" : ""
-                          }`}
+                        className={`h-3.5 w-3.5 !text-white stroke-[2.4] transition-transform duration-200 group-hover:rotate-180 group-hover:!text-[#FFC83D] ${
+                          dropdownOpen ? "rotate-180 !text-[#FFC83D]" : ""
+                        }`}
                       />
                     </button>
+
+                    {/* Active yellow short underline for About Us if active */}
+                    {isAboutActive && (
+                      <span className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#FFC83D] rounded-full shadow-sm" />
+                    )}
 
                     {/* About Us Dropdown Menu: Dual CSS hover + State-driven visibility, Gold Accent */}
                     <div
                       id="about-dropdown-menu"
                       role="menu"
                       aria-labelledby="about-menu-button"
-                      className={`absolute left-0 top-full pt-2 z-50 transition-all duration-200 origin-top-left before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] ${dropdownOpen
-                        ? "opacity-100 visible pointer-events-auto translate-y-0"
-                        : "opacity-0 invisible pointer-events-none -translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:translate-y-0"
-                        }`}
+                      className={`absolute left-0 top-full pt-2 z-50 transition-all duration-200 origin-top-left before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] ${
+                        dropdownOpen
+                          ? "opacity-100 visible pointer-events-auto translate-y-0"
+                          : "opacity-0 invisible pointer-events-none -translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:translate-y-0"
+                      }`}
                     >
                       <div className="w-68 rounded-2xl bg-white p-2.5 shadow-[0_16px_40px_rgba(16,45,70,0.22)] border border-slate-100 ring-1 ring-black/5">
                         <div className="space-y-1" role="none">
@@ -248,91 +294,81 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
                 );
               }
 
-              if (isHome) {
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="relative flex flex-col items-center text-[14.5px] xl:text-[15px] font-bold tracking-tight !text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] group cursor-pointer"
-                  >
-                    <span className="!text-white group-hover:!text-[#FFC83D] transition-colors">
-                      {item.name}
-                    </span>
-                    {/* Active yellow short underline */}
-                    <span className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-[#FFC83D] rounded-full shadow-sm" />
-                  </Link>
-                );
-              }
-
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[14.5px] xl:text-[15px] font-bold tracking-tight !text-white hover:!text-[#FFC83D] transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] group cursor-pointer"
+                  className="relative flex flex-col items-center text-[14.5px] xl:text-[15px] font-bold tracking-tight !text-white hover:!text-[#FFC83D] transition-colors drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] group cursor-pointer"
                 >
                   <span className="!text-white group-hover:!text-[#FFC83D] transition-colors">
                     {item.name}
                   </span>
+                  {/* Active yellow short underline */}
+                  {isItemActive && (
+                    <span className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-[#FFC83D] rounded-full shadow-sm" />
+                  )}
                 </Link>
               );
             })}
           </nav>
 
           {/* ========================================================================= */}
-          {/* 3. RIGHT: Yellow Organic Enquire Now Button + Mobile Toggle                */}
+          {/* 3. RIGHT: Admissions Button (Desktop) + Mobile Toggle                     */}
           {/* ========================================================================= */}
           <div className="flex items-center gap-3">
-            {/* Admission Button: Dark Navy Pill with Gold Phone Icon and Toggle Hover Effect */}
-            <a
-              href="https://admission.sreejayamschool.edu.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Admissions - Sree Jayam School"
-              className="admission-toggle-btn group relative inline-flex h-[58px] w-[185px] shrink-0 items-center overflow-hidden rounded-full bg-[#102D46] border-[1.5px] border-[#FFC83D]/50 shadow-[0_4px_16px_rgba(0,0,0,0.28)] hover:border-[#FFC83D] hover:shadow-[0_6px_22px_rgba(255,200,61,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#102D46] active:scale-[0.98] transition-all duration-300 select-none cursor-pointer origin-right scale-[0.84] xs:scale-[0.92] sm:scale-100"
-              style={{
-                backgroundColor: "#102D46",
-                borderColor: "rgba(255, 200, 61, 0.5)",
-                height: "51px",
-                width: "185px",
-              }}
-            >
-              {/* Text: Call Now in gold - positioned on left, glides to right on hover */}
-              <span
-                className="admission-toggle-text absolute left-[22px] flex items-center text-[15px] font-bold tracking-wide text-[#FFC83D] whitespace-nowrap"
+            {/* Admission Button: Desktop only (completely hidden on screens < lg) */}
+            <div className="hidden lg:flex items-center">
+              <a
+                href="https://admission.sreejayamschool.edu.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Admissions - Sree Jayam School"
+                className="admission-toggle-btn group relative !hidden lg:!inline-flex h-[58px] w-[185px] shrink-0 items-center overflow-hidden rounded-full bg-[#102D46] border-[1.5px] border-[#FFC83D]/50 shadow-[0_4px_16px_rgba(0,0,0,0.28)] hover:border-[#FFC83D] hover:shadow-[0_6px_22px_rgba(255,200,61,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#102D46] active:scale-[0.98] transition-all duration-300 select-none cursor-pointer origin-right scale-100"
                 style={{
-                  color: "#FFC83D",
+                  backgroundColor: "#102D46",
+                  borderColor: "rgba(255, 200, 61, 0.5)",
+                  height: "51px",
+                  width: "185px",
                 }}
               >
-                Admissions
-              </span>
-
-              {/* Gold circular phone icon - positioned on right, glides to left on hover */}
-              <span
-                className="admission-toggle-icon absolute top-[7px] right-[7px] flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#FFC83D] text-[#102D46] shadow-[0_2px_8px_rgba(0,0,0,0.22)]"
-                style={{
-                  backgroundColor: "#FFF",
-                  color: "#102D46",
-                  width: "35px",
-                  height: "35px",
-                }}
-                aria-hidden="true"
-              >
-                <Phone
-                  className="h-5 w-5 fill-[#102D46] stroke-[#102D46] text-[#102D46]"
+                {/* Text: Admissions in gold */}
+                <span
+                  className="admission-toggle-text absolute left-[22px] flex items-center text-[15px] font-bold tracking-wide text-[#FFC83D] whitespace-nowrap"
                   style={{
-                    color: "#102D46",
-                    fill: "#102D46",
+                    color: "#FFC83D",
                   }}
-                />
-              </span>
-            </a>
+                >
+                  Admissions
+                </span>
+
+                {/* Gold circular phone icon */}
+                <span
+                  className="admission-toggle-icon absolute top-[7px] right-[7px] flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#FFC83D] text-[#102D46] shadow-[0_2px_8px_rgba(0,0,0,0.22)]"
+                  style={{
+                    backgroundColor: "#FFF",
+                    color: "#102D46",
+                    width: "35px",
+                    height: "35px",
+                  }}
+                  aria-hidden="true"
+                >
+                  <Phone
+                    className="h-5 w-5 fill-[#102D46] stroke-[#102D46] text-[#102D46]"
+                    style={{
+                      color: "#102D46",
+                      fill: "#102D46",
+                    }}
+                  />
+                </span>
+              </a>
+            </div>
 
             {/* Mobile Navigation Toggle Button (Visible on screens < lg) */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Navigation Menu"
-              className="flex lg:hidden h-10 w-10 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm transition-all"
+              className="flex lg:hidden h-10 w-10 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC83D]"
             >
               <Menu className="h-5 w-5 stroke-[2.2]" />
             </button>

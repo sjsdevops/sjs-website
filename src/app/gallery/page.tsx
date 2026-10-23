@@ -12,8 +12,6 @@ import {
   FaChevronRight,
   FaXmark,
   FaAward,
-  FaTrophy,
-  FaFlag,
   FaStar,
   FaMusic,
   FaUsers,
@@ -21,12 +19,10 @@ import {
 } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-// 7 Filterable Tabs defined by the specification
+// Filterable Tabs
 type TabCategory =
   | "All"
   | "Ceremonies"
-  | "Sports"
-  | "National Days"
   | "Special Days"
   | "Cultural Events"
   | "School Life";
@@ -40,8 +36,6 @@ interface TabItem {
 const tabs: TabItem[] = [
   { id: "All", label: "All" },
   { id: "Ceremonies", label: "Ceremonies", icon: FaAward },
-  { id: "Sports", label: "Sports", icon: FaTrophy },
-  { id: "National Days", label: "National Days", icon: FaFlag },
   { id: "Special Days", label: "Special Days", icon: FaStar },
   { id: "Cultural Events", label: "Cultural Events", icon: FaMusic },
   { id: "School Life", label: "School Life", icon: FaUsers },
@@ -57,7 +51,7 @@ export interface Album {
   images: { src: string; caption: string }[];
 }
 
-// 11 Celebration Albums mapped strictly according to client specification
+// Celebration Albums
 const celebrationAlbums: Album[] = [
   // 1. Ceremonies
   {
@@ -84,57 +78,7 @@ const celebrationAlbums: Album[] = [
     ],
   },
 
-  // 2. Sports
-  {
-    id: "sports-day",
-    title: "Sports Day",
-    category: "Sports",
-    categoryBadge: "Sports",
-    coverImage: "/images/facilities/sports- facilities.jpg",
-    description:
-      "A thrilling annual celebration of athleticism, teamwork, track events, and vibrant inter-house sportsmanship.",
-    images: [
-      {
-        src: "/images/facilities/sports- facilities.jpg",
-        caption: "Athletes taking position on the track during the annual inter-house sprint events",
-      },
-      {
-        src: "/images/facilities/basket-ball.jpg",
-        caption: "High-energy basketball championship on the campus outdoor court",
-      },
-      {
-        src: "/images/gallery/mid-school.jpg",
-        caption: "Students celebrating sports achievements and sportsmanship",
-      },
-    ],
-  },
-
-  // 3. National Days
-  {
-    id: "independence-day",
-    title: "Independence Day",
-    category: "National Days",
-    categoryBadge: "National Days",
-    coverImage: "/images/news/event-independence.jpg",
-    description:
-      "Commemorating the spirit of national unity with patriotic performances, ceremonial flag hoisting, and march past.",
-    images: [
-      {
-        src: "/images/news/event-independence.jpg",
-        caption: "Solemn flag hoisting and patriotic cultural tribute on Independence Day",
-      },
-      {
-        src: "/images/facilities/School-prayer.jpg",
-        caption: "School choir singing patriotic anthems in harmony during the national celebrations",
-      },
-      {
-        src: "/images/about/School-block.png",
-        caption: "Sree Jayam campus decorated in tricolour splendour for Independence Day",
-      },
-    ],
-  },
-
-  // 4. Special Days — Colour Day
+  // 2. Special Days — Colour Day
   {
     id: "colour-day",
     title: "Colour Day",
@@ -184,28 +128,7 @@ const celebrationAlbums: Album[] = [
     ],
   },
 
-  // 6. Special Days — Teachers Day
-  {
-    id: "teachers-day",
-    title: "Teachers Day",
-    category: "Special Days",
-    categoryBadge: "Special Days",
-    coverImage: "/images/news/event-teachers.jpg",
-    description:
-      "Students expressing heartfelt gratitude, admiration, and respect to our dedicated faculty through artistic performances.",
-    images: [
-      {
-        src: "/images/news/event-teachers.jpg",
-        caption: "Students felicitating respected educators with tokens of gratitude and flowers",
-      },
-      {
-        src: "/images/facilities/indoor-hall.jpg",
-        caption: "Lively student-choreographed skit and cultural tribute for Teachers Day",
-      },
-    ],
-  },
-
-  // 7. Special Days — Childrens Day
+  // Special Days — Childrens Day
   {
     id: "childrens-day",
     title: "Childrens Day",
@@ -474,7 +397,7 @@ export default function GalleryPage() {
                   School Celebrations &amp; Albums
                 </h2>
                 <p className="text-sm sm:text-base text-[#64748B] mt-2">
-                  Browse our photo albums by category to relive celebrations, sports meets, cultural fests, and student achievements.
+                  Browse our photo albums by category to relive celebrations, cultural fests, special days, and student achievements.
                 </p>
               </div>
 

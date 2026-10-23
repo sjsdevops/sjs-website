@@ -87,9 +87,9 @@ export default function Hero({}: HeroProps) {
   );
 
   return (
-    <section className="relative w-full overflow-hidden bg-transparent h-screen min-h-[100dvh]">
-      {/* Background School Hero Video scaled to eliminate letterbox bars and start flush at top */}
-      <div className="absolute inset-0 h-full w-full overflow-hidden pointer-events-none">
+    <section className="relative w-full overflow-hidden bg-transparent h-[65svh] min-h-[480px] max-h-[650px] lg:h-screen lg:min-h-[100dvh] lg:max-h-none m-0 p-0">
+      {/* Background School Hero Video Wrapper: starts flush at top:0, left:0, no padding/margin */}
+      <div className="absolute inset-0 top-0 left-0 m-0 p-0 h-full w-full overflow-hidden pointer-events-none">
         <video
           src="/videos/school-hero.mp4"
           autoPlay
@@ -97,13 +97,30 @@ export default function Hero({}: HeroProps) {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover object-center scale-[1.35] pointer-events-none"
+          className="absolute inset-0 top-0 left-0 m-0 p-0 h-full w-full object-cover object-center scale-[1.35] pointer-events-none"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
         />
       </div>
 
-      {/* Subtle Transparent Deep Navy (#102D46) Gradient Overlay over Top of Hero Video */}
+      {/* Transparent Deep Navy (#102D46) Gradient Overlay over Top of Hero Video */}
+      {/* Mobile: soft gentle gradient eliminating dark blue-shaded band above header */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[340px] sm:h-[400px] lg:h-[460px] z-10 select-none"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[180px] z-10 select-none block sm:hidden"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(16, 45, 70, 0.35) 0%, rgba(16, 45, 70, 0.20) 35%, rgba(16, 45, 70, 0.06) 70%, rgba(16, 45, 70, 0) 100%)",
+        }}
+        aria-hidden="true"
+      />
+      {/* Tablet & Desktop: preserved original rich deep navy gradient */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 sm:h-[320px] lg:h-[460px] z-10 select-none hidden sm:block"
         style={{
           background:
             "linear-gradient(180deg, rgba(16, 45, 70, 0.85) 0%, rgba(16, 45, 70, 0.72) 25%, rgba(16, 45, 70, 0.48) 52%, rgba(16, 45, 70, 0.22) 75%, rgba(16, 45, 70, 0.06) 90%, rgba(16, 45, 70, 0) 100%)",
@@ -111,9 +128,31 @@ export default function Hero({}: HeroProps) {
         aria-hidden="true"
       />
 
+      {/* Subtle Dark Backdrop Tint to ensure centered heading & subtitle remain clearly readable across all video scenes */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 bg-black/35 sm:bg-black/30 select-none"
+        aria-hidden="true"
+      />
+
+      {/* Centered Hero Heading & Subtitle Pill */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 pointer-events-none pb-12 sm:pb-16 pt-12 sm:pt-0">
+        {/* Main Heading: Two-line elegant white serif */}
+        <h1 className="font-serif text-white tracking-normal leading-[1.12] sm:leading-[1.15] text-[34px] xs:text-[42px] sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] select-none max-w-5xl">
+          <span className="block font-normal">Welcome to</span>
+          <span className="block font-semibold sm:font-medium mt-1 sm:mt-2">Sree Jayam School</span>
+        </h1>
+
+        {/* Subtitle inside rounded dark charcoal semi-transparent pill */}
+        <div className="mt-4 sm:mt-6 md:mt-7 inline-flex items-center justify-center">
+          <span className="inline-block px-5 sm:px-7 md:px-8 py-2 sm:py-2.5 rounded-full bg-[#18181b]/75 sm:bg-[#121820]/75 backdrop-blur-md border border-white/20 text-white font-semibold text-[11px] sm:text-[13px] md:text-[14px] uppercase tracking-[0.24em] sm:tracking-[0.30em] shadow-[0_4px_20px_rgba(0,0,0,0.35)] select-none">
+            ICSE &amp; ISC HIGHER SECONDARY
+          </span>
+        </div>
+      </div>
+
       {/* Continuous Scrolling Announcement Marquee Ticker at the bottom of Hero */}
       <div
-        className="absolute bottom-0 left-0 right-0 z-20 w-full overflow-hidden bg-[#075A9C] py-2.5 sm:py-2 shadow-[0_-4px_16px_rgba(0,0,0,0.18)] border-t border-white/15 announcement-bar-hover select-none sm:select-auto"
+        className="absolute bottom-0 left-0 right-0 z-30 w-full overflow-hidden bg-[#075A9C] py-2.5 sm:py-2 shadow-[0_-4px_16px_rgba(0,0,0,0.18)] border-t border-white/15 announcement-bar-hover select-none sm:select-auto"
         role="region"
         aria-label="School Announcements"
       >
