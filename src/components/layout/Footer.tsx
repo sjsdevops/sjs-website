@@ -187,7 +187,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact-us" className="hover:text-[#FFC83D] transition-colors">
+                  <Link href="/contact" className="hover:text-[#FFC83D] transition-colors">
                     Contact Us
                   </Link>
                 </li>
@@ -311,27 +311,27 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:gap-4 w-full">
-          <Link href="/privacy-policy" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
+          <Link href="/legal/privacy-policy" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
             Privacy Policy
           </Link>
           <span className="text-white/20">|</span>
-          <Link href="/terms-and-conditions" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
+          <Link href="/legal/terms-policies" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
             Terms & Conditions
           </Link>
           <span className="text-white/20">|</span>
-          <Link href="/fee-refund-policy" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
+          <Link href="/legal/fee-refund" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
             Fee Refund
           </Link>
           <span className="text-white/20">|</span>
-          <Link href="/child-protection-policy" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
+          <Link href="/legal/child-protection" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
             Child Protection
           </Link>
           <span className="text-white/20">|</span>
-          <Link href="/cookie-policy" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px] ">
+          <Link href="/legal/cookie-policy" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px] ">
             Cookie Policy
           </Link>
           <span className="text-white/20">|</span>
-          <Link href="/legal-disclaimer" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-color text-[11px] ">
+          <Link href="/legal/legal-disclaimer" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-color text-[11px] ">
             Legal Disclaimer
           </Link>
         </div>

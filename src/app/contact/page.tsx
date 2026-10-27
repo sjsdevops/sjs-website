@@ -67,7 +67,7 @@ export default function ContactUsPage() {
           {/* Content Container */}
           <div className="container-width relative z-20 w-full pt-20 sm:pt-24 lg:pt-26 pb-8 sm:pb-10">
             <div className="max-w-3xl space-y-3 sm:space-y-4">
-              {/* Breadcrumb: Home → Contact Us */}
+              {/* Breadcrumb: Home → Contact */}
               <div className="inline-flex flex-col">
                 <div className="flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide text-white">
                   <Link
@@ -79,7 +79,7 @@ export default function ContactUsPage() {
                   <span className="text-white/80" aria-hidden="true">
                     &gt;
                   </span>
-                  <span className="text-white">Contact Us</span>
+                  <span className="text-white">Contact</span>
                 </div>
                 {/* Short yellow underline below Home */}
                 <span
@@ -90,7 +90,7 @@ export default function ContactUsPage() {
 
               {/* Page Title */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[68px] font-bold text-white tracking-tight leading-tight">
-                Contact Us
+                Contact
               </h1>
 
               {/* Subtitle */}

@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
   { name: "Academics", href: "/academics" },
   { name: "Facilities", href: "/facilities" },
   { name: "Gallery", href: "/gallery" },
-  { name: "Contact Us", href: "/contact-us" },
+  { name: "Contact", href: "/contact" },
 ];
 
 interface HeaderProps {
@@ -474,11 +474,11 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
               </Link>
 
               <Link
-                href="/contact-us"
+                href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block py-2.5 font-bold text-base text-[#102D46] hover:text-[#075A9C] border-b border-slate-100"
               >
-                Contact Us
+                Contact
               </Link>
 
               {/* Admission Button in Drawer */}

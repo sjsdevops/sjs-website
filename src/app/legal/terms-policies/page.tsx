@@ -6,12 +6,12 @@ import TermsHeader from "./TermsHeader";
 import { LuShieldCheck, LuArrowRight } from "react-icons/lu";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Sree Jayam School",
+  title: "Terms & Policies | Sree Jayam School",
   description:
-    "Official Terms and Conditions for Sree Jayam School, Vellore. Review policies on admissions, student code of conduct, website usage, liability, and governing law.",
+    "Official Terms and Policies for Sree Jayam School, Vellore. Review policies on admissions, student code of conduct, website usage, liability, and governing law.",
 };
 
-export default function TermsAndConditionsPage() {
+export default function TermsPoliciesPage() {
   return (
     <div className="min-h-screen bg-white text-[#102D46] selection:bg-[#FFC83D] selection:text-[#102D46] flex flex-col justify-between">
       {/* 1. Header with interactive Enquiry Modal */}
@@ -33,7 +33,7 @@ export default function TermsAndConditionsPage() {
 
           <div className="container-width relative z-10">
             <div className="max-w-3xl space-y-4">
-              {/* Breadcrumb: Home > Terms & Conditions */}
+              {/* Breadcrumb: Home > Terms & Policies */}
               <div className="inline-flex flex-col">
                 <div className="flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide text-white">
                   <Link
@@ -45,7 +45,7 @@ export default function TermsAndConditionsPage() {
                   <span className="text-white/60" aria-hidden="true">
                     &gt;
                   </span>
-                  <span className="text-[#D0E2F2]">Terms &amp; Conditions</span>
+                  <span className="text-[#D0E2F2]">Terms &amp; Policies</span>
                 </div>
                 {/* Short yellow underline below Home */}
                 <span
@@ -56,12 +56,12 @@ export default function TermsAndConditionsPage() {
 
               {/* Heading */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight">
-                Terms &amp; <span className="text-[#FFC83D]">Conditions</span>
+                Terms &amp; <span className="text-[#FFC83D]">Policies</span>
               </h1>
 
               {/* Subtitle */}
               <p className="text-base sm:text-lg md:text-xl text-[#D0E2F2] font-normal leading-relaxed max-w-2xl">
-                Please review the terms and conditions governing the use of the
+                Please review the terms and policies governing the use of the
                 Sree Jayam School website, admissions, and institutional services.
               </p>
 

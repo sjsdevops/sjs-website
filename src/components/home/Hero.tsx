@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface HeroProps {
   onOpenEnquiry?: () => void;
@@ -52,6 +52,50 @@ const announcements: Announcement[] = [
 ];
 
 export default function Hero({}: HeroProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Robust autoplay initialization for mobile Safari and Android Chrome
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Explicitly enforce muted properties and attributes required by mobile WebKit/Blink
+    video.defaultMuted = true;
+    video.muted = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    const playVideo = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If autoplay is blocked (e.g. low power mode), automatically play on first tap/interaction
+          const handleFirstInteraction = () => {
+            video.play().catch(() => {});
+            window.removeEventListener("touchstart", handleFirstInteraction);
+            window.removeEventListener("click", handleFirstInteraction);
+          };
+          window.addEventListener("touchstart", handleFirstInteraction, {
+            once: true,
+            passive: true,
+          });
+          window.addEventListener("click", handleFirstInteraction, {
+            once: true,
+            passive: true,
+          });
+        });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener("loadeddata", playVideo, { once: true });
+      video.addEventListener("canplay", playVideo, { once: true });
+    }
+  }, []);
+
   // Render a seamless set of announcements
   const renderAnnouncementSet = (prefix: string, isAriaHidden = false) => (
     <div
@@ -91,7 +135,9 @@ export default function Hero({}: HeroProps) {
       {/* Background School Hero Video Wrapper: starts flush at top:0, left:0, no padding/margin */}
       <div className="absolute inset-0 top-0 left-0 m-0 p-0 h-full w-full overflow-hidden pointer-events-none">
         <video
+          ref={videoRef}
           src="/videos/school-hero.mp4"
+          poster="/images/hero/hero-poster.jpg"
           autoPlay
           muted
           loop
@@ -135,11 +181,11 @@ export default function Hero({}: HeroProps) {
       />
 
       {/* Centered Hero Heading & Subtitle Pill */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 pointer-events-none pb-12 sm:pb-16 pt-12 sm:pt-0">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 pointer-events-none pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10">
         {/* Main Heading: Two-line elegant white serif */}
-        <h1 className="font-serif text-white tracking-normal leading-[1.12] sm:leading-[1.15] text-[34px] xs:text-[42px] sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] select-none max-w-5xl">
-          <span className="block font-normal">Welcome to</span>
-          <span className="block font-semibold sm:font-medium mt-1 sm:mt-2">Sree Jayam School</span>
+        <h1 className="font-serif text-white tracking-normal leading-[1.12] sm:leading-[1.15] text-[32px] xs:text-[40px] sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] select-none max-w-5xl">
+          <span className="block whitespace-nowrap">Inspiring Minds.</span>
+          <span className="block whitespace-nowrap mt-1 sm:mt-2">Shaping Futures.</span>
         </h1>
 
         {/* Subtitle inside rounded dark charcoal semi-transparent pill */}
