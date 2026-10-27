@@ -316,7 +316,7 @@ export default function Footer() {
           </Link>
           <span className="text-white/20">|</span>
           <Link href="/legal/terms-policies" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
-            Terms & Conditions
+            Terms & Policies
           </Link>
           <span className="text-white/20">|</span>
           <Link href="/legal/fee-refund" className="text-[#9BBAD4] hover:text-[#FFC83D] transition-colors text-[11px]">
