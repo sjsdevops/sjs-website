@@ -11,6 +11,7 @@ import AcademicResults from "@/components/home/AcademicResults";
 import AdmissionsBanner from "@/components/home/AdmissionsBanner";
 import Footer from "@/components/layout/Footer";
 import EnquiryModal from "@/components/ui/EnquiryModal";
+import ScholarshipPopup from "@/components/home/ScholarshipPopup";
 
 export default function Home() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
@@ -54,6 +55,9 @@ export default function Home() {
         isOpen={isEnquiryModalOpen}
         onClose={closeEnquiryModal}
       />
+
+      {/* Scholarship Examination Announcement Popup */}
+      <ScholarshipPopup />
     </div>
   );
 }

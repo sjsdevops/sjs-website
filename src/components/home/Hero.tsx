@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
+import { GraduationCap, ArrowRight } from "lucide-react";
 
 interface HeroProps {
   onOpenEnquiry?: () => void;
@@ -188,11 +190,34 @@ export default function Hero({}: HeroProps) {
           <span className="block whitespace-nowrap mt-1 sm:mt-2">Shaping Futures.</span>
         </h1>
 
-        {/* Subtitle inside rounded dark charcoal semi-transparent pill */}
+        {/* Temporarily hidden per client request:
         <div className="mt-4 sm:mt-6 md:mt-7 inline-flex items-center justify-center">
           <span className="inline-block px-5 sm:px-7 md:px-8 py-2 sm:py-2.5 rounded-full bg-[#18181b]/75 sm:bg-[#121820]/75 backdrop-blur-md border border-white/20 text-white font-semibold text-[11px] sm:text-[13px] md:text-[14px] uppercase tracking-[0.24em] sm:tracking-[0.30em] shadow-[0_4px_20px_rgba(0,0,0,0.35)] select-none">
             ICSE &amp; ISC HIGHER SECONDARY
           </span>
+        </div>
+        */}
+
+        {/* Scholarship Exam 2027 - 2028 Button (Moved under hero heading) */}
+        <div className="mt-4 sm:mt-6 md:mt-7 inline-flex items-center justify-center pointer-events-auto">
+          <Link
+            href="/scholarship-registration"
+            className="group inline-flex items-center gap-2.5 sm:gap-3 px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 rounded-full bg-[#102D46]/95 hover:bg-[#102D46] active:bg-[#0A1E30] backdrop-blur-md border border-[#FFC83D]/90 hover:border-[#FFC83D] text-white shadow-[0_4px_25px_rgba(16,45,70,0.6),0_0_20px_rgba(255,200,61,0.3)] hover:shadow-[0_6px_30px_rgba(16,45,70,0.8),0_0_28px_rgba(255,200,61,0.55)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none"
+            aria-label="Register for Scholarship Exam 2027-2028"
+          >
+            {/* Accent Yellow Icon Circle with Navy Graduation Cap */}
+            <span className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#FFC83D] text-[#102D46] shadow-xs shrink-0 group-hover:scale-110 transition-transform duration-200">
+              <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
+            </span>
+
+            {/* Single-line Button Label */}
+            <span className="font-bold text-xs sm:text-[13.5px] md:text-[14px] uppercase tracking-[0.18em] sm:tracking-[0.24em] text-white whitespace-nowrap">
+              SCHOLARSHIP EXAM  2027 - 2028
+            </span>
+
+            {/* Subtle Right Arrow */}
+            <ArrowRight className="w-4 h-4 text-[#FFC83D] shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
 

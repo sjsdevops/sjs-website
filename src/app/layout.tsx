@@ -30,13 +30,15 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/images/logo/logo.png" },
+      { url: "/favicon.ico" },
       { url: "/icon.png" },
+      { url: "/images/logo/logo.png" },
     ],
     apple: [
+      { url: "/apple-icon.png" },
       { url: "/images/logo/logo.png" },
     ],
-    shortcut: "/images/logo/logo.png",
+    shortcut: "/favicon.ico",
   },
 };
 
@@ -44,8 +46,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning>
+      <body className={`${poppins.className} ${poppins.variable} ${playfair.variable} font-sans`} suppressHydrationWarning>
         {children}
         <WhatsAppButton />
       </body>
