@@ -417,11 +417,19 @@ export default function AdminScholarshipDashboard() {
 
     for (const app of targets) {
       try {
-        const res = await fetch("/api/whatsapp/broadcast", {
+        let res = await fetch("/api/whatsapp/broadcast", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ applicationNumber: app.application_number, examDate: "November 29, 2026" }),
         });
+
+        if (res.status === 404) {
+          res = await fetch("/api/whatsapp/broadcast.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ applicationNumber: app.application_number, examDate: "November 29, 2026" }),
+          });
+        }
 
         const data = await res.json().catch(() => null);
         console.log(`[Broadcast] Result for ${app.student_name} (${app.primary_contact_number}):`, data);
@@ -449,11 +457,19 @@ export default function AdminScholarshipDashboard() {
 
     setSingleSendingId(app.id);
     try {
-      const res = await fetch("/api/whatsapp/broadcast", {
+      let res = await fetch("/api/whatsapp/broadcast", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ applicationNumber: app.application_number, examDate: "November 29, 2026" }),
       });
+
+      if (res.status === 404) {
+        res = await fetch("/api/whatsapp/broadcast.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ applicationNumber: app.application_number, examDate: "November 29, 2026" }),
+        });
+      }
 
       const data = await res.json().catch(() => null);
       console.log(`[Single Notice] Result for ${app.student_name}:`, data);

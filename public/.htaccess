@@ -1,0 +1,15 @@
+# Sree Jayam School - Apache .htaccess for cPanel deployment
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Direct routing for WhatsApp API endpoints to PHP handlers
+  RewriteRule ^api/whatsapp/broadcast/?$ api/whatsapp/broadcast.php [L,QSA]
+  RewriteRule ^api/whatsapp/registration/?$ api/whatsapp/registration.php [L,QSA]
+
+  # Allow clean URLs for exported Next.js HTML files
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
