@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 
 WORKDIR /app
 COPY package*.json ./
@@ -6,12 +6,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Serve with nginx
-FROM nginx:alpine
-
-# Custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/out /usr/share/nginx/html
-
+# Serve with the Next.js server so the /api/whatsapp routes run server-side
+ENV NODE_ENV=production
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npx", "next", "start", "-p", "80"]

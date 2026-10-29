@@ -217,21 +217,12 @@ export default function ScholarshipRegistrationPage() {
       // Registration successful
       // Trigger WhatsApp registration confirmation message
       try {
-        let waRes = await fetch("/api/whatsapp/registration", {
+        const waRes = await fetch("/api/whatsapp/registration", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ applicationNumber }),
         });
-
-        if (waRes.status === 404) {
-          waRes = await fetch("/api/whatsapp/registration.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ applicationNumber }),
-          });
-        }
-
-        const waResult = await waRes.json().catch(() => null);
+        const waResult = await waRes.json();
         console.log("WhatsApp registration dispatch result:", waResult);
       } catch (err) {
         console.error("WhatsApp registration message error:", err);
